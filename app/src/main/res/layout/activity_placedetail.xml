@@ -138,8 +138,10 @@
                 android:textStyle="bold"/>
             <ListView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="500dp"
                 android:layout_marginTop="10dp"
+                android:focusable="true"
+                android:clickable="true"
                 android:id="@+id/lv_guide_placedetail">
 
             </ListView>

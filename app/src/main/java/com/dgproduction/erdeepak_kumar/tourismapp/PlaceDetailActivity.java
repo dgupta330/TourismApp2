@@ -85,7 +85,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             ImageAdapter adapter = new ImageAdapter(this, new String[]{details.getUrl1(), details.getUrl2(), details.getUrl3()});
             viewPager.setAdapter(adapter);
             //location.setText(details.getLanguage());
-            Toast.makeText(getApplicationContext(), details.getName() + "\n" + details.getPlace() + "\n" + details.getUrl1(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), details.getName(), Toast.LENGTH_SHORT).show();
 
             //Glide.with(this).load("https://image.tmdb.org/t/p/w500"+details.getPoster_path()).into(image);
         } else {
@@ -114,6 +114,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String value = adapter.getItem(i).getName();
+                Toast.makeText(getApplicationContext(), "Thanks for Selecting Mr."+guidedetail.get(i).getName(), Toast.LENGTH_SHORT).show();
                 final int pos = i;
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(PlaceDetailActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.cutom_dialog_guide_display, null);
@@ -125,8 +126,8 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
                 final RatingBar rating = (RatingBar) mView.findViewById(R.id.rat_dialog_gd);
 
 
-                name.setText(guidedetail.get(pos).getName().toString());
-                area.setText(guidedetail.get(pos).getArea().toString());
+                name.setText(guidedetail.get(i).getName().toString());
+                area.setText(guidedetail.get(i).getArea().toString());
                 price.setText(guidedetail.get(pos).getPackage_price().toString());
                 mobile.setText(guidedetail.get(pos).getMobile_no().toString());
                 regno.setText(guidedetail.get(pos).getRegno().toString());
@@ -135,6 +136,10 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
 
                 Button mmsg = (Button) mView.findViewById(R.id.btn_msg_dialog_gd);
                 Button mcall = (Button) mView.findViewById(R.id.btn_call_dialog_gd);
+
+                mBuilder.setView(mView);
+                final AlertDialog dialog = mBuilder.create();
+                dialog.show();
 
                 mcall.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -161,9 +166,6 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
 
                     }
                 });
-                mBuilder.setView(mView);
-                final AlertDialog dialog = mBuilder.create();
-                dialog.show();
             }
         });
 
