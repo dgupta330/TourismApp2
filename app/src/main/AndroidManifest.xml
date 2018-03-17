@@ -6,7 +6,6 @@
     android:glEsVersion="0x00020000"
     android:required="true" />
 
-
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -47,8 +46,8 @@
             android:value="@integer/google_play_services_version" />
 
         <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBJ-nT0iYVuv7M4n9If_bNXlc77U4rhTLE" />
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBJ8mgyW7RihtONiIqTIBJaDVmrOxHzSYw"/>
 
     </application>
 

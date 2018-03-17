@@ -7,7 +7,12 @@ package com.dgproduction.erdeepak_kumar.tourismapp;
         import android.view.ViewGroup;
         import android.widget.ImageView;
 
-      //  import com.bumptech.glide.Glide;
+        import com.squareup.picasso.Picasso;
+
+        import java.net.MalformedURLException;
+        import java.net.URL;
+
+//  import com.bumptech.glide.Glide;
 
 public class ImageAdapter extends PagerAdapter {
     Context mContext;
@@ -34,6 +39,11 @@ public class ImageAdapter extends PagerAdapter {
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
       //  imageView.setImageResource(sliderImageurl[position]);
        // Glide.with(mContext).load(sliderImageurl[position]).into(imageView);
+        try {
+            Picasso.get().load(String.valueOf(new URL(sliderImageurl[position]))).resize(350,250).into(imageView);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         ((ViewPager)container).addView(imageView,0);
 
 

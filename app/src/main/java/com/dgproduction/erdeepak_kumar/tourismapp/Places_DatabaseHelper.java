@@ -25,7 +25,8 @@ public class Places_DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_URL3= "url3";
 
     private static final String KEY_PLACE = "place";
-    private static final String KEY_LOCATION = "location";
+    private static final String KEY_LATITUDE = "latitude";
+    private static final String KEY_LONGITUDE = "longitude";
     private static final String KEY_TYPE="type";
     private static final String KEY_DESCRIPTION="description";
 
@@ -40,7 +41,7 @@ public class Places_DatabaseHelper extends SQLiteOpenHelper {
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
                  + KEY_NAME + " TEXT,"
                 +KEY_PLACE + " TEXT,"
-                + KEY_TYPE + " TEXT,description TEXT,location text,url1 text,url2 text,url3 text)";
+                + KEY_TYPE + " TEXT,description TEXT,latitude text,longitude text,url1 text,url2 text,url3 text)";
         db.execSQL(CREATE_CONTACTS_TABLE);
     }
 
@@ -56,7 +57,8 @@ public class Places_DatabaseHelper extends SQLiteOpenHelper {
     public Map<String, Object> toMap(Places places) {
         HashMap<String, Object> values = new HashMap<>();
         values.put(KEY_NAME, places.getName());
-        values.put(KEY_LOCATION, places.getLocation());
+        values.put(KEY_LATITUDE, places.getLatitude());
+        values.put(KEY_LONGITUDE, places.getLongitude());
         values.put(KEY_TYPE, places.getType());
         values.put(KEY_PLACE, places.getPlace());
         values.put(KEY_DESCRIPTION,places.getDescription());
@@ -73,7 +75,8 @@ public class Places_DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put(KEY_NAME, places.getName());
-        values.put(KEY_LOCATION, places.getLocation());
+        values.put(KEY_LATITUDE, places.getLatitude());
+        values.put(KEY_LONGITUDE, places.getLongitude());
         values.put(KEY_TYPE, places.getType());
         values.put(KEY_PLACE, places.getPlace());
         values.put(KEY_DESCRIPTION,places.getDescription());
@@ -98,13 +101,13 @@ public class Places_DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_CONTACTS, new String[] {
-                        KEY_NAME,KEY_PLACE, KEY_TYPE,KEY_DESCRIPTION,KEY_LOCATION,KEY_URL1,KEY_URL2,KEY_URL3 }, KEY_NAME + "=?",
+                        KEY_NAME,KEY_PLACE, KEY_TYPE,KEY_DESCRIPTION,KEY_LATITUDE,KEY_LONGITUDE,KEY_URL1,KEY_URL2,KEY_URL3 }, KEY_NAME + "=?",
                 new String[] { String.valueOf(name) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
         Places places = new Places(cursor.getString(0),
-                cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7));
+                cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7),cursor.getString(8));
         // return places
         return places;
     }
@@ -126,10 +129,11 @@ public class Places_DatabaseHelper extends SQLiteOpenHelper {
                 places.setPlace(cursor.getString(1));
                 places.setType(cursor.getString(2));
                 places.setDescription(cursor.getString(3));
-                places.setLocation(cursor.getString(4));
-                places.setUrl1(cursor.getString(5));
-                places.setUrl2(cursor.getString(6));
-                places.setUrl3(cursor.getString(7));
+                places.setLatitude(cursor.getString(4));
+                places.setLongitude(cursor.getString(5));
+                places.setUrl1(cursor.getString(6));
+                places.setUrl2(cursor.getString(7));
+                places.setUrl3(cursor.getString(8));
                 // Adding places to list
                 placesList.add(places);
             } while (cursor.moveToNext());
@@ -145,7 +149,8 @@ public class Places_DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, places.getName());
-        values.put(KEY_LOCATION, places.getLocation());
+        values.put(KEY_LATITUDE, places.getLatitude());
+        values.put(KEY_LONGITUDE, places.getLongitude());
         values.put(KEY_TYPE, places.getType());
         values.put(KEY_PLACE, places.getPlace());
         values.put(KEY_DESCRIPTION,places.getDescription());

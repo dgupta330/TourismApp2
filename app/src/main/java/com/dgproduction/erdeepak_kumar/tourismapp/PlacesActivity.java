@@ -1,5 +1,11 @@
 package com.dgproduction.erdeepak_kumar.tourismapp;
 
+/*
+<meta-data
+        android:name="com.google.android.maps.v2.API_KEY"
+        android:value="AIzaSyBJ-nT0iYVuv7M4n9If_bNXlc77U4rhTLE" />
+        */
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;

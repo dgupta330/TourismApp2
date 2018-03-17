@@ -12,8 +12,18 @@ public class Places implements Serializable {
     String place;
     String type;
     String description;
-    String location;
-    String url1="http://goo.gl/gEgYUd",url2="http://goo.gl/gEgYUd",url3="http://goo.gl/gEgYUd";
+    String latitude;
+    String longitude;
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    String url1="http://i.imgur.com/DvpvklR.png",url2="http://i.imgur.com/DvpvklR.png",url3="http://i.imgur.com/DvpvklR.png";
     ArrayList<Guide>guides=new ArrayList<>(3);
 
     public String getUrl1() {
@@ -44,15 +54,17 @@ public class Places implements Serializable {
     public Places()
     {}
 
-    public Places(String name, String place, String type, String description, String location,String url1,String url2,String url3) {
+    public Places(String name, String place, String type, String description, String latitude,String longitude,String url1,String url2,String url3) {
         this.name = name;
         this.place = place;
         this.type = type;
         this.description = description;
-        this.location = location;
-        this.url1="http://goo.gl/gEgYUd";
+        this.latitude = latitude;
+        this.url1=url1;
         this.url2=url2;
         this.url3=url3;
+        this.latitude=latitude;
+        this.longitude=longitude;
     }
 
     public String getName() {
@@ -87,11 +99,11 @@ public class Places implements Serializable {
         this.description = description;
     }
 
-    public String getLocation() {
-        return location;
+    public String getLatitude() {
+        return latitude;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
     }
 }

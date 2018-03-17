@@ -1,5 +1,5 @@
 package com.dgproduction.erdeepak_kumar.tourismapp;
-
+//
 import android.app.Activity;
 import android.media.Rating;
 import android.support.annotation.NonNull;
