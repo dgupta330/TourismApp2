@@ -40,7 +40,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         GoogleMap.OnMapLongClickListener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         GoogleMap.OnMarkerDragListener {
-    TextView name, place, type, description;
+    TextView name, place, type, description,address;
     ListView guidelist;
     ViewPager viewPager;
     DatabaseHelper gdb;
@@ -60,6 +60,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         place = findViewById(R.id.tv_place_placedetail);
         type = findViewById(R.id.tv_type_placedetail);
         description = findViewById(R.id.tv_description_placedetail);
+        address=findViewById(R.id.tv_address_placedetail);
         guidelist = findViewById(R.id.lv_guide_placedetail);
         viewPager = findViewById(R.id.viewpager);
 
@@ -70,10 +71,12 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         if (extras != null) {
             Places details = (Places) this.getIntent().getSerializableExtra("PLACESDETAILS");
 
-            name.setText(details.getName());
-            place.setText(details.getPlace());
-            description.setText(details.getDescription());
-            type.setText(details.getType());
+                name.setText(details.getName());
+                place.setText(details.getPlace());
+                description.setText(details.getDescription());
+                type.setText(details.getType());
+                address.setText(details.getAddress());
+
             try {
                 latitude = Double.parseDouble(details.getLatitude());
                 longitude = Double.parseDouble(details.getLongitude());
@@ -107,7 +110,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
 
 
 //ListView
-        final ArrayList<Guide> guidedetail = gdb.getAllGuide();
+        final ArrayList<Guide> guidedetail = gdb.getAllGuide(place.getText().toString());
         final MyListAdapter adapter = new MyListAdapter(this, guidedetail);
         guidelist.setAdapter(adapter);
         guidelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {

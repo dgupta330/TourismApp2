@@ -130,6 +130,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return guideList;
     }
 
+    // code to get all guides in a list view
+    public ArrayList<Guide> getAllGuide(String area) {
+        ArrayList<Guide> guideList = new ArrayList<>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_CONTACTS+" where "+KEY_AREA+"='"+area+"'";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Guide guide = new Guide();
+                guide.setRegno(cursor.getString(0));
+                guide.setName(cursor.getString(1));
+                guide.setMobile_no(cursor.getString(2));
+                guide.setArea(cursor.getString(3));
+                guide.setPackage_price(cursor.getString(4));
+                guide.setRating(cursor.getFloat(5));
+                // Adding guide to list
+                guideList.add(guide);
+            } while (cursor.moveToNext());
+        }
+
+        // return guide list
+        return guideList;
+    }
+
     // code to update the single guide
     public int updateGuide(Guide guide) {
         SQLiteDatabase db = this.getWritableDatabase();

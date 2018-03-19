@@ -74,6 +74,28 @@
             android:fontFamily="casual"
             android:textColor="#000000"
             android:textSize="15dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Address :"
+                android:fontFamily="casual"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:textSize="18dp"
+                android:inputType="textMultiLine"
+                android:id="@+id/et_address_createplace"
+                />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,7 +115,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:textSize="18dp"
-                android:layout_gravity="left|top"
                 android:inputType="textMultiLine"
                 android:id="@+id/et_description_createplace"
                 />

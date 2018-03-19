@@ -32,7 +32,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class CreatePlaceActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
-EditText name,place,type,description,location,url1,url2,url3;
+EditText name,place,type,description,address,url1,url2,url3;
 Button save;
     private GoogleApiClient googleApiClient;
     private int PLACE_PICKER_REQUEST = 1;
@@ -40,19 +40,20 @@ ImageButton add_guide,add_location;
 Places_DatabaseHelper db;
 DatabaseHelper gdb;
 private GoogleMap mMap;
-String  latitude="28.612875",   longitude="77.229310";;
+String  latitude="28.612875",   longitude="77.229310";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_place);
-        name=findViewById(R.id.et_name_createplace);
+        name=(EditText)findViewById(R.id.et_name_createplace);
         place=findViewById(R.id.et_place_createplace);
         type=findViewById(R.id.et_type_createplace);
         description=findViewById(R.id.et_description_createplace);
         url1=findViewById(R.id.et_url1_createplace);
         url2=findViewById(R.id.et_url2_createplace);
         url3=findViewById(R.id.et_url3_createplace);
+        address=findViewById(R.id.et_address_createplace);
         //location=findViewById();
         add_guide=findViewById(R.id.ib_add_guide_createplace);
         add_location=findViewById(R.id.ib_get_location_createplace);
@@ -165,12 +166,12 @@ String  latitude="28.612875",   longitude="77.229310";;
                     places.setUrl3((url3.getText().toString()));
                     places.setLatitude(latitude);
                     places.setLongitude(longitude);
-                 //place.setLocation();
+                 places.setAddress(address.getText().toString());
 
                    Boolean res=db.addPlaces(places);
                     if(res) {
                         Toast.makeText(CreatePlaceActivity.this,
-                                "Place Added Successfully",
+                                "Place Added Successfully ",
                                 Toast.LENGTH_SHORT).show();
                     }
                     else{ Toast.makeText(CreatePlaceActivity.this,
@@ -195,7 +196,7 @@ String  latitude="28.612875",   longitude="77.229310";;
             if(resultCode==RESULT_OK)
             {
                 Place place = PlacePicker.getPlace(data,this);
-                String address = String.format("%s",place.getAddress());
+                String maddress = String.format("%s",place.getAddress());
                 try {
                     latitude = String.valueOf(place.getLatLng().latitude);
                     longitude = String.valueOf(place.getLatLng().longitude);
@@ -206,7 +207,7 @@ String  latitude="28.612875",   longitude="77.229310";;
                     longitude="77.229310";
                 }
                 Toast.makeText(getApplicationContext(),latitude+"\n"+longitude,Toast.LENGTH_SHORT).show();
-                this.place.setText(address);
+                this.address.setText(maddress);
             }
             else {
                 Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_SHORT).show();

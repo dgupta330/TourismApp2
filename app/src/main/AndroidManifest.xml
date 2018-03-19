@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dgproduction.erdeepak_kumar.tourismapp">
 
-<uses-feature
-    android:glEsVersion="0x00020000"
-    android:required="true" />
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -23,6 +23,7 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.dgproduction.erdeepak_kumar.tourismapp.permission.MAPS_RECEIVE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -30,7 +31,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PlacesActivity">
+        <activity android:name=".PlacesActivity" />
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,17 +42,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".PlaceDetailActivity" />
-        <activity android:name=".CreatePlaceActivity"></activity>
+        <activity android:name=".CreatePlaceActivity" />
 
         <meta-data
             android:name="com.google.android.gms.version"
-
             android:value="@integer/google_play_services_version" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBJ8mgyW7RihtONiIqTIBJaDVmrOxHzSYw"/>
+            android:value="AIzaSyBJ8mgyW7RihtONiIqTIBJaDVmrOxHzSYw" />
 
+        <activity android:name=".WeatherActivity"></activity>
     </application>
 
 </manifest>
