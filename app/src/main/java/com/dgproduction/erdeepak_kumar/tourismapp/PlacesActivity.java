@@ -27,7 +27,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class PlacesActivity extends AppCompatActivity  {
-Button create_btn,search_btn;
+Button create_btn,search_btn,weather_btn;
 ListView placeslist;
 Places_DatabaseHelper db;
     @Override
@@ -37,6 +37,7 @@ Places_DatabaseHelper db;
         create_btn=findViewById(R.id.btn_create_places);
         search_btn=findViewById(R.id.btn_search_places);
         placeslist=findViewById(R.id.lv_place_places);
+        weather_btn=findViewById(R.id.btn_weather_places);
 
         create_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +61,14 @@ Places_DatabaseHelper db;
               //  intent.putExtra("PLACESDETAILS", (Serializable) placesdetail.get(i));
 
                 startActivity(intent);
+            }
+        });
+
+        weather_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in= new Intent(PlacesActivity.this,WeatherActivity.class);
+                startActivity(in);
             }
         });
     }
